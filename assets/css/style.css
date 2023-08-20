@@ -1,0 +1,688 @@
+@charset "utf-8";
+
+/* general */
+
+
+body {
+  margin: 0;
+}
+
+section {
+  margin-top: 80px;
+  margin-bottom: 190px;
+}
+
+h2 {
+  font-family: 'YuMincho';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 50px;
+  line-height: 75px;
+  color: #333333;
+}
+
+h3 {
+  font-family: 'YuMincho';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 60px;
+  color: #333333;
+}
+
+p {
+  font-family: 'YuMincho';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 27px;
+  color: #333333;
+}
+
+a {
+  text-decoration: none;
+}
+
+@media (max-width: 500px) {
+  h2 {
+    font-size: 32px;
+    line-height: 55px;
+  }
+
+  h3 {
+    font-size: 25px;
+    line-height: 40px;
+  }
+
+  p {
+    font-size: 14px;
+    line-height: 24px;
+  }
+}
+
+img {
+  pointer-events: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+video {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+/* Loading*/
+#loading {
+  width: 100vw;
+  height: 100vh;
+  transition: all 1s;
+  background-color: rgb(255, 255, 255);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+}
+
+.loading-animation {
+  width: auto;
+  height: auto;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  text-align: center;
+  transform: translate(-50%,-50%);
+  background-color: #fff;
+}
+
+.loading-animation::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: #333;
+}
+
+
+.loading-animation::before {
+  animation: loading-arrow 2s ease infinite;
+}
+
+
+@keyframes loading-arrow{
+  0%{width:0;opacity:0}
+  20%{width:0;opacity:1}
+  80%{width:105%;opacity:1}
+  100%{width:105%;opacity:0}
+}
+
+
+/* Hide Loading */
+.loaded {
+  opacity: 0;
+  visibility: hidden;
+}
+
+
+
+
+/* fade in animation 縦*/
+
+.fadeIn{
+  animation-name:fadeInAnimation;
+  animation-duration:1.3s;
+  animation-fill-mode:forwards;
+  opacity:0;
+}
+  
+@keyframes fadeInAnimation {
+  from {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+  
+   
+.fadeInTrigger{
+  opacity: 0;
+}
+
+
+
+
+/* header */
+#header {
+  padding: 10px 0;
+  height: 45px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  transition: all 0.5s;
+  z-index: 2;
+}
+
+#header.header-scrolled {
+  background: rgba(44, 44, 44, 0.25);
+  padding: 10px 0;
+  height: 45px;
+  transition: all 0.5s;
+}
+  
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  z-index: 2;
+  width: 100%;
+}
+
+    
+#logo p {
+  font-family: 'YuMincho';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 18px;
+  
+
+  margin-left: 20px;
+
+  text-decoration: none;
+}
+
+@media screen and (max-width: 550px) {
+  #logo p {
+    font-size: 14px;
+  }
+}
+    
+.nav-menu {
+  display: flex;
+}
+    
+.nav-menu li {
+  margin-right: 25px;
+  list-style-type: none;
+}
+    
+.nav-menu li a {
+  text-decoration: none;
+  color: #000000;
+}
+    
+#logo a :hover,
+.nav-menu li a :hover,
+.nav-manu li a :active,
+.nav-menu li.current a p{
+  color: #ababab;
+}
+  
+.nav-menu li a p {
+  font-family: 'YuMincho';
+  font-style: normal;
+  font-size: 20px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+/* ヘッダーのナビ部分 */
+
+@media screen and (max-width: 960px) {
+  .nav-menu-container {
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    transform: translateX(100%);
+    background-color: #fff;
+    transition: ease .4s;
+  }
+  
+  .nav-menu {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 0;
+  }
+
+  .nav-menu li {
+    margin-bottom: 30px;
+  }
+
+  #header {
+    padding: 0;
+  }
+
+  #header.header-scrolled {
+    padding: 0;
+  }
+}
+
+
+/* hamburger */
+.hamburger {
+  padding-top: 15px;
+}
+
+.hamburger span {
+  width: 100%;
+  height: 1px;
+  background-color: #000;
+  position: relative;
+  transition: ease .3s;
+  display: block;
+}
+
+.hamburger span:nth-child(1) {
+  top: 0;
+}
+
+.hamburger span:nth-child(2) {
+  margin: 8px 0;
+}
+
+.hamburger span:nth-child(3) {
+  top: 0;
+}
+
+/* * ハンバーガーメニュークリック後 */
+.nav-menu-container.active {
+  transform: translateX(0);
+}
+
+.hamburger.active span:nth-child(1) {
+  top: 5px;
+  transform: rotate(45deg);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  top: -13px;
+  transform: rotate(-45deg);
+}
+
+
+/*ハンバーガーメニュー*/
+.mobile-menu {
+  width: 48px;
+  height: 100%;
+}
+
+.hamburger {
+  background-color: transparent;
+  border-color: transparent;
+  z-index: 5;
+}
+@media screen and (min-width: 960px) {
+  .hamburger {
+    display: none;
+  }
+}
+
+
+/* home */
+
+.home-content {
+  width: 50%;
+
+  margin: 150px auto;
+
+  position: relative;
+}
+
+.home-photo {
+  margin-right: auto;
+  margin-left: auto;
+  padding: 20px;
+}
+
+.home-photo img {
+  width: 100%;
+  max-height: 100%;
+}
+
+@media (max-width: 768px) {
+  .home-content {
+    width: 95%;
+  }
+}
+
+
+
+/* about */
+
+.about-content {
+  width: 70%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (max-width: 768px) {
+  .about-content {
+    width: 95%;
+  }
+}
+
+
+/* design */
+
+.design-content {
+  width: 70%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.design-photo {
+  margin-right: auto;
+  margin-left: auto;
+  padding: 40px;
+}
+
+.design-photo img {
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .design-content {
+    width: 95%;
+  }
+}
+
+
+
+/* photo */
+
+.photo-title {
+  width: 70%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (max-width: 768px) {
+  .photo-title {
+    width: 95%;
+  }
+}
+
+
+/* photo slider begin */
+
+#photography_wrapper {
+  display: flex;
+  width: 100vw;
+  height: auto;
+  overflow: hidden;
+}
+
+#photography_wrapper ul {
+  display: flex;
+  list-style-type: none;
+  width: auto;
+  height: auto;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  padding-inline-start: 0;
+}
+
+.photography_photo {
+  width: auto;
+  height: 300px;
+  margin-right: 300px;
+}
+
+.photography_container ul:first-child {
+  animation: photo_slider 100s -50s linear infinite;
+}
+
+.photography_container ul:last-child {
+  animation: photo_slider2 100s linear infinite;
+}
+
+
+@keyframes photo_slider {
+  0% {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes photo_slider2 {
+  0% {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-200%);
+  }
+}
+
+
+/* photo slider end */
+
+/* photo slider 2 begin */
+#photography_wrapper_2 {
+  display: flex;
+  width: 100vw;
+  height: auto;
+  overflow: hidden;
+}
+
+#photography_wrapper_2 ul {
+  display: flex;
+  list-style-type: none;
+  width: auto;
+  height: auto;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  padding-inline-start: 0;
+}
+
+.photography_container_2 ul:first-child {
+  animation: photo_slider_reverse 100s -50s linear infinite;
+}
+
+.photography_container_2 ul:last-child {
+  animation: photo_slider_reverse2 100s linear infinite;
+}
+
+
+@keyframes photo_slider_reverse {
+  0% {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes photo_slider_reverse2 {
+  0% {
+    transform: translateX(-200%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+
+
+/* photo slider 2 end */
+
+
+
+/* video */
+
+.video-content {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+.video-title {
+  position: absolute;
+  z-index: 1;
+  top: 15%;
+  left: 30%;
+  transform: translate(-50%,-50%);
+
+  margin-left: 30px;
+}
+
+.video-description p{
+  position: absolute;
+  z-index: 1;
+  top: 30%;
+  left: 48%;
+  transform: translate(-50%,-50%);
+
+}
+
+.video-container {
+  position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	overflow: hidden;
+}
+
+.video-container video {
+  position: absolute;
+	top: 50%;
+	left: 50%;
+	object-fit: cover;
+	transform: translate(-50%, -50%);
+	width: 100%;
+	height: 100vh;
+  
+}
+
+
+
+/* bottom */
+
+.bottom-title {
+  text-align: center;
+}
+
+.bottom-title p{
+  font-family: 'Mrs Saint Delafield', cursive;
+  font-weight: 500;
+  font-size: 45px;
+  line-height: 70px;
+  color: #6d6d6d;
+}
+
+.copyright {
+  text-align: center;
+}
+
+.copyright small{
+  color: #414141;
+}
+
+@media (max-width: 500px) {
+  .bottom-title p {
+    font-size: 25px;
+  }
+}
+
+
+
+/* index */
+
+.video-container-2 {
+  position: fixed;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+
+}
+.video-container-2 video {
+  object-fit: cover;
+  width: 100%;
+  height: 100vh;
+}
+
+.video-title-top {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  text-align: center;
+  transform: translate(-50%,-50%);
+}
+
+.video-title-top h2 {
+  color: #ffffff;
+  line-height: 44px;
+}
+
+.viewMore{
+  position: absolute;
+  z-index: 1;
+  top: 70%;
+  left: 50%;
+  text-align: center;
+  transform: translate(-50%,-50%);
+}
+
+.viewMore p {
+  margin: 0;
+  color: #ffffff;
+  transition: all 0.3s;
+}
+
+.viewMore p:hover {
+  color: #4f4f4f;
+}
+
+
+/* fade in animation 縦*/
+
+.fadeIn-2{
+  animation-name:fadeInAnimation-2;
+  animation-duration:10s;
+  animation-fill-mode:forwards;
+  opacity:0;
+}
+  
+@keyframes fadeInAnimation-2 {
+  from {
+    opacity: 0;
+  }
+  
+  to {
+    opacity: 1;
+  }
+}
+  
+  
+/* はじめに透過0を指定*/
+   
+.fadeInTrigger-2{
+  opacity: 0;
+}
+
+
+  

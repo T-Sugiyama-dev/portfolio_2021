@@ -2,7 +2,6 @@
 
 /* general */
 
-
 body {
   margin: 0;
 }
@@ -13,7 +12,7 @@ section {
 }
 
 h2 {
-  font-family: 'YuMincho';
+  font-family: "Times New Roman", "YuMincho", "Hiragino Mincho ProN", "Yu Mincho", "MS PMincho", serif;
   font-style: normal;
   font-weight: 500;
   font-size: 50px;
@@ -22,7 +21,7 @@ h2 {
 }
 
 h3 {
-  font-family: 'YuMincho';
+  font-family: "Times New Roman", "YuMincho", "Hiragino Mincho ProN", "Yu Mincho", "MS PMincho", serif;
   font-style: normal;
   font-weight: 500;
   font-size: 40px;
@@ -31,7 +30,7 @@ h3 {
 }
 
 p {
-  font-family: 'YuMincho';
+  font-family: "Times New Roman", "YuMincho", "Hiragino Mincho ProN", "Yu Mincho", "MS PMincho", serif;
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -187,7 +186,7 @@ video {
 
     
 #logo p {
-  font-family: 'YuMincho';
+  font-family: "Times New Roman", "YuMincho", "Hiragino Mincho ProN", "Yu Mincho", "MS PMincho", serif;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
@@ -227,7 +226,7 @@ video {
 }
   
 .nav-menu li a p {
-  font-family: 'YuMincho';
+  font-family: "Times New Roman", "YuMincho", "Hiragino Mincho ProN", "Yu Mincho", "MS PMincho", serif;
   font-style: normal;
   font-size: 20px;
   margin-top: 5px;

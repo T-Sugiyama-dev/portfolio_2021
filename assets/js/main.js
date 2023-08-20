@@ -1,137 +1,104 @@
 window.onload = function() {
   const spinner = document.getElementById('loading');
   spinner.classList.add('loaded');
+
   const photoSlider = document.getElementById('photography_wrapper');
   photoSlider.classList.add('photography_container');
+
   const photoSlider2 = document.getElementById('photography_wrapper_2');
   photoSlider2.classList.add('photography_container_2');
-}
+};
 
 const select = (el, all = false) => {
-    el = el.trim()
-    if (all) {
-      return [...document.querySelectorAll(el)]
-    } else {
-      return document.querySelector(el)
-    }
+  el = el.trim();
+  if (all) {
+    return [...document.querySelectorAll(el)];
+  } else {
+    return document.querySelector(el);
   }
+};
 
 const onScroll = (el, listener) => {
-   el.addEventListener('scroll', listener)
-}
+  el.addEventListener('scroll', listener);
+};
 
-let selectHeader = select('#header')
-  if (selectHeader) {
-    const headerScrolled = () => {
-      if (window.scrollY > 100) {
-        selectHeader.classList.add('header-scrolled')
-      } else {
-        selectHeader.classList.remove('header-scrolled')
-      }
+let selectHeader = select('#header');
+if (selectHeader) {
+  const headerScrolled = () => {
+    if (window.scrollY > 100) {
+      selectHeader.classList.add('header-scrolled');
+    } else {
+      selectHeader.classList.remove('header-scrolled');
     }
-    window.addEventListener('load', headerScrolled)
-    onScroll(document, headerScrolled)
+  };
+  window.addEventListener('load', headerScrolled);
+  onScroll(document, headerScrolled);
 }
 
 // mobile menu
 
-const mobileNav = $('#mobile-menu');
-const nav = $('#nav-menu-container');
-mobileNav.on('click', function () { 
-  mobileNav.toggleClass('active'); 
-  nav.toggleClass('active'); 
+const mobileNav = document.querySelector('#mobile-menu');
+const nav = document.querySelector('#nav-menu-container');
+mobileNav.addEventListener('click', function () { 
+  mobileNav.classList.toggle('active'); 
+  nav.classList.toggle('active'); 
 });
 
-nav.on('click', function () {
-  mobileNav.toggleClass('active');
-  nav.toggleClass('active');
-})
-
+nav.addEventListener('click', function () {
+  mobileNav.classList.toggle('active');
+  nav.classList.toggle('active');
+});
 
 // fade in animation
 
-function fadeInAnimation(){
-  $('.fadeInTrigger').each(function(){
-    var elemPos = $(this).offset().top-50;
-    var scroll = $(window).scrollTop();
-    var windowHeight = $(window).height();
-    if (scroll >= elemPos - windowHeight){
-    $(this).addClass('fadeIn');
-    }else{
-    $(this).removeClass('fadeIn');
+function fadeInAnimation(element, className) {
+  const elements = document.querySelectorAll(element);
+  elements.forEach(elem => {
+    const elemPos = elem.getBoundingClientRect().top - 50;
+    const scroll = window.scrollY;
+    const windowHeight = window.innerHeight;
+    if (scroll >= elemPos - windowHeight) {
+      elem.classList.add(className);
+    } else {
+      elem.classList.remove(className);
     }
-    });
+  });
 }
 
-$(window).scroll(function (){
-  fadeInAnimation();
+window.addEventListener('scroll', function () {
+  fadeInAnimation('.fadeInTrigger', 'fadeIn');
 });
 
-window.addEventListener('load', function(){
-  fadeInAnimation();
+window.addEventListener('load', function () {
+  fadeInAnimation('.fadeInTrigger', 'fadeIn');
 });
-
-
 
 // fade in animation index
 
-function fadeInAnimation2(){
-  $('.fadeInTrigger-2').each(function(){
-    var elemPos = $(this).offset().top-50;
-    var scroll = $(window).scrollTop();
-    var windowHeight = $(window).height();
-    if (scroll >= elemPos - windowHeight){
-    $(this).addClass('fadeIn-2');
-    }else{
-    $(this).removeClass('fadeIn-2');
-    }
+window.addEventListener('scroll', function () {
+  fadeInAnimation('.fadeInTrigger-2', 'fadeIn-2');
+});
+
+window.addEventListener('load', function () {
+  fadeInAnimation('.fadeInTrigger-2', 'fadeIn-2');
+});
+
+// Disable image and video interactions
+
+const disableInteractions = (element) => {
+  const elements = document.querySelectorAll(element);
+  elements.forEach(elem => {
+    elem.addEventListener('contextmenu', function (e) {
+      e.preventDefault();
     });
-}
-
-
-$(window).scroll(function (){
-  fadeInAnimation2();
-});
-
-window.addEventListener('load', function(){
-  fadeInAnimation2();
-});
-
-
-// img
-$(function(){
-  $("img").on("contextmenu",function(){
-    return false;
+    elem.addEventListener('selectstart', function (e) {
+      e.preventDefault();
+    });
+    elem.addEventListener('mousedown', function (e) {
+      e.preventDefault();
+    });
   });
-});
-  
-$(function(){
-  $("img").on("selectstart",function(){
-    return false;
-  });
-});
-  
-$(function(){
-  $("img").on("mousedown",function(){
-    return false;
-  });
-});
+};
 
-// video
-$(function(){
-  $("video").on("contextmenu",function(){
-    return false;
-  });
-});
-  
-$(function(){
-  $("video").on("selectstart",function(){
-    return false;
-  });
-});
-  
-$(function(){
-  $("video").on("mousedown",function(){
-    return false;
-  });
-});
+disableInteractions('img');
+disableInteractions('video');
